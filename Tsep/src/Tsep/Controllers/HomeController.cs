@@ -15,5 +15,9 @@ namespace Tsep
         {
             return View();
         }
+        public IActionResult GetColleges()
+        {
+            return View();
+        }
     }
 }
