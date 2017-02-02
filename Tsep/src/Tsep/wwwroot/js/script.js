@@ -1,0 +1,19 @@
+$(document).ready(function(){
+	$(".icon").click(function(){
+		$(".title").toggle();
+	});
+	$(".website").hide();
+	$(".developer").hide();
+	$(".website_a").click(function(){
+		$("#dev_li").removeClass("active_li");
+		$("#web_li").addClass("active_li");
+		$(".website").fadeIn('medium');
+		$(".developer").hide();
+	});
+	$(".developer_a").click(function(){
+		$("#web_li").removeClass("active_li");
+		$("#dev_li").addClass("active_li");
+		$(".developer").fadeIn('medium');
+		$(".website").hide();
+	});
+});

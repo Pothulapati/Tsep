@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Oswald|Raleway|Source+Sans+Pro&amp;subset=latin-ext" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript">
+    	function myFunction() {
+    		var x = document.getElementById("myTopnav");
+		    if (x.className === "topnav") {
+		        x.className += " responsive";
+		    }else{
+		        x.className = "topnav";
+		    }
+	}
+    </script>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <ul class="topnav" id="myTopnav">
+            <li class="title"><a href="index.html">TSEamcet Predictor</a></li>
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="Colleges">Colleges</a></li>
+            <li><a href="predictor.html">Predictor</a></li>
+            <li class="right"><a href="about.html">About</a></li>
+            <li class="right"><a href="contact.html">Contact</a></li>
+            <li class="icon">
+                <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+            </li>
+        </ul>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
