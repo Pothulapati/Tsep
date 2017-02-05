@@ -2,12 +2,44 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+  
 }
+@using Tsep.Models
+@model Tsep.Entities.CollegeDetails
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
 </head>
 <body>
-    Colleges Tab Man
-</body>
+
+     <div class="container">
+         @using(Html.BeginForm())
+         {
+         <div>
+         <h2>Select College</h2> 
+         @Html.DropDownListFor(m=>m.college.Code,Model.colgs)
+             </div>
+         <div>
+             <p></p>
+             <input type="submit" value="Get Details"/>
+         </div>
+         }
+         @if (Model.colgselected)
+         {
+        <div>
+            @Html.LabelFor(m => m.college.Name, "College Selected", null)
+            @Html.DisplayTextFor(m => m.college.Name)
+        </div>
+        <div>
+           <h5>@Html.LabelFor(m => m.college.Address, "Address:", null)
+            @Html.DisplayTextFor(m => m.college.Address)
+               </h5>
+        </div>
+         }
+     </div>
+   
+   
+  
+
+   </body>
 </html>

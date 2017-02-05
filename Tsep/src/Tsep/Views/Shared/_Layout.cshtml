@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=haa">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Oswald|Raleway|Source+Sans+Pro&amp;subset=latin-ext" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,15 +25,15 @@
 <body>
     <header>
         <ul class="topnav" id="myTopnav">
-            <li class="title"><a href="index.html">TSEamcet Predictor</a></li>
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="Colleges">Colleges</a></li>
-            <li><a href="predictor.html">Predictor</a></li>
-            <li class="right"><a href="about.html">About</a></li>
-            <li class="right"><a href="contact.html">Contact</a></li>
+            <li class="@(ViewBag.Page == "Index" ? "active" : "")">@Html.ActionLink("Home","Index","Home")</li>
+            <li class="@(ViewBag.Page == "Colleges" ? "active" : "")">@Html.ActionLink("Colleges","Index","Colleges")</li>
+            <li class="@(ViewBag.Page == "Predictor" ? "active" : "")">@Html.ActionLink("Predictor", "Index", "Predictor")</li>
+            <li class="right @(ViewBag.Page == "About" ? "active" : "")">@Html.ActionLink("About","Index","About")</li>
+            <li class="right @(ViewBag.Page == "Contact" ? "active" : "")"><a href="contact.html">Contact</a></li>
             <li class="icon">
                 <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
             </li>
+
         </ul>
     </header>
     <div>
