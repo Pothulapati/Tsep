@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Tsep.Entities.Prediction
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Rank Predictor</title>
+</head>
+<body>
+    <div class="container">
+        @using (Html.BeginForm("Index","Predictor"))
+        {
+        <div>
+          <h2>@Html.LabelFor(m => m.GroupTotal)
+            @Html.TextBoxFor(m=>m.GroupTotal)
+            </h2> 
+            
+        </div>
+        <div>
+           <h2>
+               @Html.LabelFor(m => m.EamcetTotal)
+               @Html.TextBoxFor(m => m.EamcetTotal)
+           </h2>
+        </div>
+        <div>
+            <input type="submit" value="Save"/>
+        </div>
+
+        @if (Model.Done)
+        {
+        <div>
+            @Html.LabelFor(m => m.CombinedScore)
+            @Html.DisplayTextFor(m => m.CombinedScore)
+        </div>
+            }
+        }
+    </div>
+ 
+
+</body>
+</html>

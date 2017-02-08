@@ -16,9 +16,6 @@ namespace Tsep
             ViewBag.Page = "Index";
             return View();
         }
-        public IActionResult GetColleges()
-        {
-            return View();
-        }
+       
     }
 }

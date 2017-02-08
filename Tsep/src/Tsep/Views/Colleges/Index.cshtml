@@ -27,15 +27,19 @@
          @if (Model.colgselected)
          {
         <div>
-            @Html.LabelFor(m => m.college.Name, "College Selected", null)
+            <h3>@Html.LabelFor(m => m.college.Name, "College Selected:", null)
             @Html.DisplayTextFor(m => m.college.Name)
+                </h3>
         </div>
         <div>
-           <h5>@Html.LabelFor(m => m.college.Address, "Addressss:", null)
+           <h3>@Html.LabelFor(m => m.college.Address, "Address:", null)
             @Html.DisplayTextFor(m => m.college.Address)
-               </h5>
+               </h3>
         </div>
          }
+         <div>
+             
+         </div>
      </div>
    
    

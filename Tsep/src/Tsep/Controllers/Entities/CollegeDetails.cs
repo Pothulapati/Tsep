@@ -11,7 +11,6 @@ namespace Tsep.Entities
     {
         public Colleges college { get; set; }
         public IEnumerable<SelectListItem> colgs { get; set; }
-
         public bool colgselected { get; set; }
 
     }
