@@ -14,7 +14,6 @@ ul.topnav {
     padding: 0;
     overflow: hidden;
     background-color: #01245e;
-  
 	font-family: 'Raleway', sans-serif;
 	font-weight: bold;
 }
@@ -26,6 +25,7 @@ ul.topnav li {
 ul.topnav li.right{
 	float: right;
 }
+
 ul.topnav li a {
     display: inline-block;
     color: #f2f2f2;
@@ -56,7 +56,7 @@ li.active a:focus{
   	}
   	
   	ul.topnav li.icon {
-    	/*float: right;*/
+    	float: right;
     	display: inline-block;
   	}
 
@@ -65,7 +65,7 @@ li.active a:focus{
   	}
 
   	ul.topnav li.title{
-  		/*float: left;*/
+  		float: left;
   		display: inline-block;
   	}
   	ul.topnav li.title:hover{
@@ -113,7 +113,6 @@ select{
 	max-width: 400px;
 	padding: 16px 0px;
 	border-radius: 0;
-   
 }
 
 .container>h1{
@@ -242,17 +241,27 @@ input[type=submit]:active{
 }
 
 /****___PREDICTOR PAGE RESULTS_STARTING___****/
+
 .results table{
 	width: 50%;
-	margin-top: 30px;
+	margin: 30px;
+	color: #fff;
+
 }
 
 .results th, 
 .results td {
-	border: 1px solid #000;
-	border-collapse: unset;
 	padding: 15px 30px;
 	text-align: center;
+	margin: 0;
+}
+
+.results th{
+	background-color: #ff8601;
+}
+
+.results td{
+	background-color: #01245e;
 }
 
 @media screen and (max-width: 1500px){

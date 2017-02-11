@@ -9,7 +9,7 @@ namespace Tsep.Entities
 {
     public class CollegeDetails
     {
-        public Colleges college { get; set; }
+        public CollegeEntity college { get; set; }
         public IEnumerable<SelectListItem> colgs { get; set; }
         public bool colgselected { get; set; }
 

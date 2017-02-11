@@ -15,26 +15,87 @@
      <div class="container">
          @using(Html.BeginForm())
          {
+         
+         <h2>Select College:</h2> 
+         @Html.DropDownListFor(m=>m.college.RowKey,Model.colgs)
+            
          <div>
-         <h2>Select College</h2> 
-         @Html.DropDownListFor(m=>m.college.Code,Model.colgs)
-             </div>
-         <div>
-             <p></p>
+            <p></p>
              <input type="submit" value="Get Details"/>
          </div>
          }
          @if (Model.colgselected)
          {
-        <div>
-            <h3>@Html.LabelFor(m => m.college.Name, "College Selected:", null)
-            @Html.DisplayTextFor(m => m.college.Name)
-                </h3>
-        </div>
-        <div>
-           <h3>@Html.LabelFor(m => m.college.Address, "Address:", null)
-            @Html.DisplayTextFor(m => m.college.Address)
-               </h3>
+             <h2>College Details:</h2>
+        <div class="results">
+            <table>
+                <tr>
+                    <th>Code: </th>
+                    <td>@Model.college.RowKey</td>
+                </tr>
+                <tr>
+                    <th>College Name: </th>
+                    <td>@Model.college.Name</td>
+                </tr>
+                <tr>
+                    <th>CoED: </th>
+                    <td>@Model.college.CoEd</td>
+                </tr>
+                <tr>
+                    <th>Minority: </th>
+                    <td>@Model.college.Minority </td>
+                </tr>
+                <tr>
+                    <th>Region: </th>
+                    <td>@Model.college.Region </td>
+                </tr>
+                <tr>
+                    <th>Aided: </th>
+                    <td>@Model.college.Aided</td>
+                </tr>
+                <tr>
+                    <th>Type: </th>
+                    <td>@Model.college.Type </td>
+                </tr>
+                <tr>
+                    <th>Phone Number: </th>
+                    <td>@Model.college.PhoneNo</td>
+                </tr>
+                <tr>
+                    <th>Address: </th>
+                    <td>@Model.college.Address</td>
+                </tr>
+                <tr>
+                    <th>Place: </th>
+                    <td>@Model.college.Place</td>
+                </tr>
+                <tr>
+                    <th>Hostel: </th>
+                    <td>@Model.college.Hostel</td>
+                </tr>
+                <tr>
+                    <th>District: </th>
+                    <td>@Model.college.District</td>
+                </tr>
+                <tr>
+                    <th>Establishment Year: </th>
+                    <td>@Model.college.EstablishmentYear</td>
+                </tr>
+                <tr>
+                    <th>Email: </th>
+                    <td>@Model.college.Email</td>
+                </tr>
+                <tr>
+                    <th>Affliation: </th>
+                    <td>@Model.college.Affliation</td>
+                </tr>
+                <tr>
+                    <th>Website: </th>
+                    <td>@Model.college.Website</td>
+                </tr>
+            </table>
+            <h2>College Cut-Off Ranks:</h2>
+
         </div>
          }
          <div>

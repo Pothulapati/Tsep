@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Table;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +15,26 @@ namespace Tsep.Controllers
 {
     public class CollegesController:Controller
     {
-        private TsEamcetContext _context;
+
+        private CloudStorageAccount account;
+        private CloudTableClient tableclient;
+        private CloudTable table;
+        private StorageCredentials creds;
+        private TableQuery<CollegeEntity> query;
         private IEnumerable<SelectListItem> colleges;
+        private TableOperation operation;
         public CollegesController()
         {
-            TsEamcetContext context = new TsEamcetContext();
-            _context = context;
-            colleges =  _context.Colleges.ToList().Select(x => new SelectListItem
+            creds = new StorageCredentials("eamcetts2016", "j76JE1NR/K2BAy57zaR4nN6JLris6eJ2Ourjs8GOKqaTMvHkX6k5SYA2ld1jZ45kcj9nAzgU49fqvv6Wwmi3tg==");
+            account = new CloudStorageAccount(creds,false);
+            tableclient = account.CreateCloudTableClient();
+            table = tableclient.GetTableReference("Colleges");
+            query = new TableQuery<CollegeEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "College"));
+            var result = table.ExecuteQuerySegmentedAsync(query, null);
+            colleges =  result.Result.ToList().Select(x => new SelectListItem
             {
                 Text = x.Name,
-                Value = x.Code
+                Value = x.RowKey
 
             });
         }
@@ -35,12 +49,13 @@ namespace Tsep.Controllers
         [HttpPost]
         public IActionResult Index(CollegeDetails colgdet)
         {
+            operation = TableOperation.Retrieve<CollegeEntity>("College", colgdet.college.RowKey);
             ViewBag.Page = "Colleges";
             colgdet.colgs = colleges;
-            colgdet.college =   _context.Colleges.First<Colleges>( x => x.Code == colgdet.college.Code);
+            var result = table.ExecuteAsync(operation);
+            colgdet.college = (CollegeEntity)result.Result.Result;
             colgdet.colgselected = true;
             return View(colgdet);
-
         }
     }
 }
