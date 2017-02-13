@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Entities\CollegeDetails.cs" />
+    <Content Include="Entities\Prediction.cs" />
     <Content Include="wwwroot\css\style.css" />
   </ItemGroup>
 

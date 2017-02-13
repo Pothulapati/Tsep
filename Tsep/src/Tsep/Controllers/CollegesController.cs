@@ -19,8 +19,10 @@ namespace Tsep.Controllers
         private CloudStorageAccount account;
         private CloudTableClient tableclient;
         private CloudTable table;
+        private CloudTable cutofs;
         private StorageCredentials creds;
         private TableQuery<CollegeEntity> query;
+        private TableQuery<CutOffEntity> que;
         private IEnumerable<SelectListItem> colleges;
         private TableOperation operation;
         public CollegesController()
@@ -29,6 +31,7 @@ namespace Tsep.Controllers
             account = new CloudStorageAccount(creds,false);
             tableclient = account.CreateCloudTableClient();
             table = tableclient.GetTableReference("Colleges");
+            cutofs = tableclient.GetTableReference("Cutoffs");
             query = new TableQuery<CollegeEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "College"));
             var result = table.ExecuteQuerySegmentedAsync(query, null);
             colleges =  result.Result.ToList().Select(x => new SelectListItem
@@ -55,6 +58,9 @@ namespace Tsep.Controllers
             var result = table.ExecuteAsync(operation);
             colgdet.college = (CollegeEntity)result.Result.Result;
             colgdet.colgselected = true;
+            que= new TableQuery<CutOffEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, colgdet.college.RowKey));
+           var  results = cutofs.ExecuteQuerySegmentedAsync<CutOffEntity>(que, null);
+           colgdet.Cutoofs = results.Result.ToList<CutOffEntity>();
             return View(colgdet);
         }
     }

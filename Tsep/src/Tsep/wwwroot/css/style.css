@@ -16,6 +16,9 @@ ul.topnav {
     background-color: #01245e;
 	font-family: 'Raleway', sans-serif;
 	font-weight: bold;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
 }
 
 ul.topnav li {
@@ -75,7 +78,7 @@ li.active a:focus{
 
 @media screen and (max-width:680px) {
   	ul.topnav.responsive {
-  		position: relative;
+  		position: fixed;
 	}
 
   	ul.topnav.responsive li.icon,
@@ -102,6 +105,8 @@ li.active a:focus{
 	overflow: hidden;
 	font-family: 'Source Sans Pro', sans-serif;
 	margin-left: 10%;
+	position: relative;
+	top: 100px;
 }
 
 form{
@@ -264,7 +269,7 @@ input[type=submit]:active{
 	background-color: #01245e;
 }
 
-@media screen and (max-width: 1500px){
+@media screen and (max-width: 1600px){
 	.results th, 
 	.results td {
 	border: 1px solid #000;

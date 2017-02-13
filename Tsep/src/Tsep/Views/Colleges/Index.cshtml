@@ -94,7 +94,40 @@
                     <td>@Model.college.Website</td>
                 </tr>
             </table>
-            <h2>College Cut-Off Ranks:</h2>
+            
+
+        </div>
+
+<h2>College Cut-Off Ranks:</h2>
+        <div class="results">
+            <table>
+                <tr>
+                    <th>Groups</th>
+                    <th>OC_GEN_OU</th>
+                    <th>BC_A_GEN_OU</th>
+                    <th>BC_B_GEN_OU</th>
+                    <th>BC_C_GEN_OU</th>
+                    <th>BC_D_GEN_OU</th>
+                    <th>BC_E_GEN_OU</th>
+                    <th>SC_GEN_OU</th>
+                    <th>ST_GEN_OU</th>
+                </tr>
+                @foreach (var item in Model.Cutoofs)
+                {
+                    <tr>
+                        <th>@item.RowKey</th>
+                        <td>@item.OC_GEN_OU</td>
+                        <td>@item.BC_A_GEN_OU</td>
+                        <td>@item.BC_B_GEN_OU</td>
+                        <td>@item.BC_C_GEN_OU</td>
+                        <td>@item.BC_D_GEN_OU</td>
+                        <td>@item.BC_E_GEN_OU</td>
+                        <td>@item.SC_GEN_OU</td>
+                        <td>@item.ST_GEN_OU</td>
+
+                    </tr>
+                }
+            </table>
 
         </div>
          }

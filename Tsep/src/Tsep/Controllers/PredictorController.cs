@@ -22,8 +22,7 @@ namespace Tsep.Controllers
         [HttpPost]
         public IActionResult Index(Prediction Model)
         {
-            Model.CombinedScore = (int)((double)Model.GroupTotal*25/600 +(double)Model.EamcetTotal*75/16);
-            Model.CombinedScore = (int)Model.CombinedScore;
+            Model.CombinedScore = (Model.GroupTotal*25)/600 +(Model.EamcetTotal*75)/160;
             Model.Done = true;
             ViewBag.Page = "Predictor";
             return View(Model);

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$(".icon").click(function(){
 		$(".title").toggle();
+		$(".container").css("position", "absolute");
 	});
 	$(".website").hide();
 	$(".developer").hide();

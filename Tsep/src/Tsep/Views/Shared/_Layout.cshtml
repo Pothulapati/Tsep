@@ -3,12 +3,12 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=haa">
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=haaaa">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Oswald|Raleway|Source+Sans+Pro&amp;subset=latin-ext" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/script.js?v=haa"></script>
     <script type="text/javascript">
     	function myFunction() {
     		var x = document.getElementById("myTopnav");
@@ -19,12 +19,20 @@
 		    }
 	}
     </script>
-    <meta name="viewport" content="width=device-width" />
+  
     <title>@ViewBag.Title</title>
 </head>
 <body>
     <header>
         <ul class="topnav" id="myTopnav">
+            @if(ViewBag.Page == "Index")
+            { 
+            <li class="title"><a href="/Home">Ts Eamcet Predictor</a></li>
+            }
+            else
+            {
+            <li class="title"><a href="/@ViewBag.Page">@ViewBag.Page</a></li>
+            }
             <li class="@(ViewBag.Page == "Index" ? "active" : "")">@Html.ActionLink("Home","Index","Home")</li>
             <li class="@(ViewBag.Page == "Colleges" ? "active" : "")">@Html.ActionLink("Colleges","Index","Colleges")</li>
             <li class="@(ViewBag.Page == "Predictor" ? "active" : "")">@Html.ActionLink("Predictor", "Index", "Predictor")</li>
