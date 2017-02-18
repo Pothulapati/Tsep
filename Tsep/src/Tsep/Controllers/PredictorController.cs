@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Tsep.Entities;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table;
+using Tsep.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,6 +15,19 @@ namespace Tsep.Controllers
 {
     public class PredictorController : Controller
     {
+        private CloudStorageAccount account;
+        private CloudTableClient tableclient;
+        private CloudTable table;
+        private CloudTable cutofs;
+        private TableOperation operation;
+        private StorageCredentials creds;
+        public PredictorController()
+        {
+            creds = new StorageCredentials("eamcetts2016", "j76JE1NR/K2BAy57zaR4nN6JLris6eJ2Ourjs8GOKqaTMvHkX6k5SYA2ld1jZ45kcj9nAzgU49fqvv6Wwmi3tg==");
+            account = new CloudStorageAccount(creds, false);
+            tableclient = account.CreateCloudTableClient();
+            table = tableclient.GetTableReference("Predictions");
+        }
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -20,10 +37,15 @@ namespace Tsep.Controllers
             return View(Model);
         }
         [HttpPost]
-        public IActionResult Index(Prediction Model)
+        public async Task<IActionResult> Getdata(Prediction Model)
         {
-            Model.CombinedScore = (Model.GroupTotal*25)/600 +(Model.EamcetTotal*75)/160;
+            Model.EamcetWeightage = (((float)Model.EamcetTotal/160)* 75);
+            Model.InterWeightage = ((float)Model.GroupTotal * 25) / 600;
+            Model.CombinedScore = (int)(Model.EamcetWeightage + Model.InterWeightage);
             Model.Done = true;
+            operation = TableOperation.Retrieve<RankRangeEntity>("Ranks",Model.CombinedScore.ToString());
+            TableResult result = await table.ExecuteAsync(operation);
+            Model.Rankrange = (RankRangeEntity)result.Result;
             ViewBag.Page = "Predictor";
             return View(Model);
         }

@@ -3,12 +3,13 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=haaaa">
+    <title>@ViewBag.Page</title>
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Oswald|Raleway|Source+Sans+Pro&amp;subset=latin-ext" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="~/js/jquery.min.js"></script>
-    <script type="text/javascript" src="~/js/script.js?v=haa"></script>
+    <script type="text/javascript" src="~/js/script.js?v=hooo"></script>
     <script type="text/javascript">
     	function myFunction() {
     		var x = document.getElementById("myTopnav");
@@ -19,8 +20,6 @@
 		    }
 	}
     </script>
-  
-    <title>@ViewBag.Title</title>
 </head>
 <body>
     <header>
@@ -44,7 +43,7 @@
 
         </ul>
     </header>
-    <div>
+    <div class="container">
         @RenderBody()
     </div>
 </body>

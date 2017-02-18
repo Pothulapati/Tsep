@@ -1,0 +1,38 @@
+﻿@model Tsep.Entities.Prediction
+<h1>Predictor</h1>
+<p><b>Group Total: </b>It is Your IPE Total of both the Years Excluding Languages and including Practicals.(Out Of 600)</p>
+@using (Html.BeginForm("Getdata", "Predictor"))
+{
+    <table>
+        <tr>
+            <td>
+                @Html.TextBoxFor(m=>m.GroupTotal, new { @class = "text-feild" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(m=>m.EamcetTotal, new { @class = "text-feild" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="Save" value="Predict">
+            </td>
+        </tr>
+    </table>
+            @if (Model.Done)
+            {
+                <div class="content">
+                    <h2>
+                        Eamcet Weightage :@Model.EamcetWeightage
+                    </h2>
+                    <h2>
+                        Inter Weightage :@Model.InterWeightage
+                    </h2>
+                    <h2>
+                        Combined Score :@Model.CombinedScore
+                    </h2>
+                    <h2>Your Rank might lie from @Model.Rankrange.min to @Model.Rankrange.max</h2>
+                </div>
+            }
+}

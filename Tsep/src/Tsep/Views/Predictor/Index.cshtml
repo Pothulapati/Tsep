@@ -1,43 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@model Tsep.Entities.Prediction
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Rank Predictor</title>
-</head>
-<body>
-    <div class="container">
-        @using (Html.BeginForm("Index","Predictor"))
+﻿
+        <h1>Predictor</h1>
+        <p><b>Group Total: </b>It is Your IPE Total of both the Years Excluding Languages and including Practicals.(Out Of 600)</p>
+        @using (Html.BeginForm("Getdata", "Predictor"))
         {
-        <div>
-          <h2>@Html.LabelFor(m => m.GroupTotal)
-            @Html.TextBoxFor(m=>m.GroupTotal)
-            </h2> 
-            
-        </div>
-        <div>
-           <h2>
-               @Html.LabelFor(m => m.EamcetTotal)
-               @Html.TextBoxFor(m => m.EamcetTotal)
-           </h2>
-        </div>
-        <div>
-            <input type="submit" value="Save"/>
-        </div>
+            <table>
+                <tr>
+                    <td>
+                        <input class="text-feild" data-val="true" data-val-required="The GroupTotal field is required." id="GroupTotal" name="GroupTotal" placeholder="Group Total" type="text"/>
 
-        @if (Model.Done)
-        {
-        <div>
-            @Html.LabelFor(m => m.CombinedScore)
-            @Html.DisplayTextFor(m => m.CombinedScore)
-        </div>
-            }
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="text-feild" data-val="true" data-val-required="The Eamcet Total field is required." id="EamcetTotal" name="EamcetTotal" placeholder="Eamcet Total" type="text"/>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="Save" value="Predict">
+                    </td>
+                </tr>
+            </table>
         }
-    </div>
- 
 
-</body>
-</html>
