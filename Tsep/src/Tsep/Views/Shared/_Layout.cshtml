@@ -3,8 +3,15 @@
 <html>
 
 <head>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5129888924074710",
+            enable_page_level_ads: true
+        });
+    </script>
     <title>@ViewBag.Page</title>
-    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css?h=assavsdsssk">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Oswald|Raleway|Source+Sans+Pro&amp;subset=latin-ext" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +28,7 @@
 	}
     </script>
 </head>
+
 <body>
     <header>
         <ul class="topnav" id="myTopnav">
@@ -34,9 +42,17 @@
             }
             <li class="@(ViewBag.Page == "Index" ? "active" : "")">@Html.ActionLink("Home","Index","Home")</li>
             <li class="@(ViewBag.Page == "Colleges" ? "active" : "")">@Html.ActionLink("Colleges","Index","Colleges")</li>
-            <li class="@(ViewBag.Page == "Predictor" ? "active" : "")">@Html.ActionLink("Predictor", "Index", "Predictor")</li>
+            <li>
+                <a href="#" class="nav-btn @(ViewBag.Page == "Predictor" ? "active" : "")" id="btn">Predictor<img class="img" src="~/images/arrow-down.png" data-swap="~/images/arrow-up.png" width="20" style="position: fixed; margin-left: 20px;" /></a>
+                <ul class="sub-nav">
+                    <li>@Html.ActionLink("Rank", "Index", "Rank") </li>
+                    <li>@Html.ActionLink("Colleges", "Index", "PredictCollege") </li>
+                </ul>
+            </li>
             <li class="right @(ViewBag.Page == "About" ? "active" : "")">@Html.ActionLink("About","Index","About")</li>
-            <li class="right @(ViewBag.Page == "Contact" ? "active" : "")"><a href="contact.html">Contact</a></li>
+            <li class="right @(ViewBag.Page == "Contact" ? "active" : "")">@Html.ActionLink("Contact","Index","Contact")</li>
+         
+
             <li class="icon">
                 <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
             </li>

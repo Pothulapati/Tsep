@@ -1,0 +1,29 @@
+﻿@model Tsep.Models.FeedBack
+<h2>Tell us your Words!</h2>
+<h4>Have a Question?Message us.
+    <br>Feedback is Aprreciated ;)</h4>
+    @using (Html.BeginForm("SendFeedback", "Contact"))
+    {
+    <table>
+        <tr>
+            <td>
+                <input type="text" name="Name" class="text-feild" placeholder="Name*" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="email" name="email" class="text-feild" placeholder="Email*" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <textarea name="message" placeholder="Message*" required></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Send">
+            </td>
+        </tr>
+    </table>
+    }

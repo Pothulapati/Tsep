@@ -19,6 +19,8 @@ ul.topnav {
 	position: fixed;
 	width: 100%;
 	z-index: 1;
+	max-height: 60px;
+	overflow: unset;
 }
 
 ul.topnav li {
@@ -38,9 +40,9 @@ ul.topnav li a {
     font-size: 17px;
 }
 
-ul.topnav li:hover {
+/*ul.topnav li:hover {
 	background-color: #cfcfcf;
-}
+}*/
 
 ul.topnav li.icon {
 	display: none;
@@ -51,6 +53,38 @@ li.active a:hover,
 li.active a:focus{
 	background-color: #ff8601;
 	color: #fff;
+}
+
+.nav-btn{
+	width: 90px;
+	background-color: transparent;
+}
+
+.nav-btn:hover{
+	background-color: transparent;
+}
+
+.sub-nav{
+	width: 131px;
+	background-color: #01245e;
+}
+
+.sub-nav:hover{
+	background-color: transparent;
+}
+
+.sub-nav>li{
+	float: left;
+	list-style: none;
+	background-color: #01245e;
+	width: 175px;
+	margin-left: -38px;
+	overflow: hidden;
+}
+
+.sub-nav>li>a{
+	text-align: left;
+	width: 100px;
 }
 
 @media screen and (max-width:680px) {
@@ -73,6 +107,10 @@ li.active a:focus{
   	}
   	ul.topnav li.title:hover{
   		background-color: transparent;
+  	}
+
+  	.sub-nav>li{
+  		width: 100%;
   	}
 }
 
@@ -180,6 +218,10 @@ input[type=submit]:active{
 }
 
 @media screen and (max-width:680px){
+	ul.topnav{
+		max-height: 500px;
+	}
+
 	.container{
 		margin: 0;
 		margin-left: 50px;

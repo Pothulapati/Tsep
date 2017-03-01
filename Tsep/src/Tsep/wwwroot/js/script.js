@@ -17,4 +17,18 @@ $(document).ready(function(){
 		$(".developer").fadeIn('medium');
 		$(".website").hide();
 	});
+	$(".sub-nav").hide();
+	$(".nav-btn").click(function(){
+		var _this = $(".img");
+      	var current = _this.attr("src");
+      	var swap = _this.attr("data-swap");     
+     	_this.attr('src', swap).attr("data-swap",current);
+
+		if ( $( ".sub-nav:first" ).is( ":hidden" ) ) {
+		    $( ".sub-nav" ).slideDown( "slow" );
+		  } else {
+		    $( ".sub-nav" ).slideUp();
+		    $("#btn").addClass("bottom");
+		  }
+	});
 });

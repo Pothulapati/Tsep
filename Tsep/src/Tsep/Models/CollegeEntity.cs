@@ -13,8 +13,6 @@ namespace Tsep.Models
             this.PartitionKey = "Colleges";
             this.RowKey = Code;
         }
-       
-              
             public string Code { get; set; }
             public string Name { get; set; }
             public string CoEd { get; set; }

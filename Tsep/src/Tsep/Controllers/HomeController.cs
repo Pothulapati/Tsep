@@ -16,6 +16,11 @@ namespace Tsep
             ViewBag.Page = "Index";
             return View();
         }
+        public IActionResult Blog(string id)
+        {
+
+            return View(id);
+        }
        
     }
 }

@@ -1,0 +1,120 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Tsep.Entities.CollegeDetails
+@using (Html.BeginForm("College", "Colleges"))
+{
+
+    <h1>Select College:</h1>
+        @Html.DropDownListFor(m => m.college.RowKey, Model.Colleges, new { @class = "selector" })
+
+        <div>
+            <p></p>
+            <input type="submit" value="Get Details" />
+        </div>
+}
+
+    <div class="results">
+        <h1>College Details</h1>
+        <table>
+            <tr>
+                <th>Code: </th>
+                <td>@Model.college.RowKey</td>
+            </tr>
+            <tr>
+                <th>College Name: </th>
+                <td>@Model.college.Name</td>
+            </tr>
+            <tr>
+                <th>CoED: </th>
+                <td>@Model.college.CoEd</td>
+            </tr>
+            <tr>
+                <th>Minority: </th>
+                <td>@Model.college.Minority </td>
+            </tr>
+            <tr>
+                <th>Region: </th>
+                <td>@Model.college.Region </td>
+            </tr>
+            <tr>
+                <th>Aided: </th>
+                <td>@Model.college.Aided</td>
+            </tr>
+            <tr>
+                <th>Type: </th>
+                <td>@Model.college.Type </td>
+            </tr>
+            <tr>
+                <th>Phone Number: </th>
+                <td>@Model.college.PhoneNo</td>
+            </tr>
+            <tr>
+                <th>Address: </th>
+                <td>@Model.college.Address</td>
+            </tr>
+            <tr>
+                <th>Place: </th>
+                <td>@Model.college.Place</td>
+            </tr>
+            <tr>
+                <th>Hostel: </th>
+                <td>@Model.college.Hostel</td>
+            </tr>
+            <tr>
+                <th>District: </th>
+                <td>@Model.college.District</td>
+            </tr>
+            <tr>
+                <th>Establishment Year: </th>
+                <td>@Model.college.EstablishmentYear</td>
+            </tr>
+            <tr>
+                <th>Email: </th>
+                <td>@Model.college.Email</td>
+            </tr>
+            <tr>
+                <th>Affliation: </th>
+                <td>@Model.college.Affliation</td>
+            </tr>
+            <tr>
+                <th>Website: </th>
+                <td>@Model.college.Website</td>
+            </tr>
+        </table>
+        <div class="results">
+            <h1>College Cut-Off Ranks:</h1>
+
+            <table>
+                <tr>
+                    <th>Groups</th>
+                    <th>OC_GEN_OU</th>
+                    <th>BC_A_GEN_OU</th>
+                    <th>BC_B_GEN_OU</th>
+                    <th>BC_C_GEN_OU</th>
+                    <th>BC_D_GEN_OU</th>
+                    <th>BC_E_GEN_OU</th>
+                    <th>SC_GEN_OU</th>
+                    <th>ST_GEN_OU</th>
+                </tr>
+                @foreach (var item in Model.Cutoofs)
+                {
+                    <tr>
+                        <th>@item.RowKey</th>
+                        <td>@item.OC_GEN_OU</td>
+                        <td>@item.BC_A_GEN_OU</td>
+                        <td>@item.BC_B_GEN_OU</td>
+                        <td>@item.BC_C_GEN_OU</td>
+                        <td>@item.BC_D_GEN_OU</td>
+                        <td>@item.BC_E_GEN_OU</td>
+                        <td>@item.SC_GEN_OU</td>
+                        <td>@item.ST_GEN_OU</td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
