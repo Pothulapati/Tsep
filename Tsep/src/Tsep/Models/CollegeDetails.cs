@@ -13,6 +13,7 @@ namespace Tsep.Entities
         public IEnumerable<SelectListItem> Colleges { get; set; }
         public bool colgselected { get; set; }
         public List<CutOffEntity> Cutoofs { get; set; }
+        public List<GroupEntity> GroupDetails { get; set; }
 
     }
 }

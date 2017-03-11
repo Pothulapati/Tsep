@@ -43,7 +43,7 @@
             <li class="@(ViewBag.Page == "Index" ? "active" : "")">@Html.ActionLink("Home","Index","Home")</li>
             <li class="@(ViewBag.Page == "Colleges" ? "active" : "")">@Html.ActionLink("Colleges","Index","Colleges")</li>
             <li>
-                <a href="#" class="nav-btn @(ViewBag.Page == "Predictor" ? "active" : "")" id="btn">Predictor<img class="img" src="~/images/arrow-down.png" data-swap="~/images/arrow-up.png" width="20" style="position: fixed; margin-left: 20px;" /></a>
+                <a href="#" class="nav-btn" id="btn">Predictor<img class="img" src="~/images/arrow-down.png" data-swap="~/images/arrow-up.png" width="20" style="position: fixed; margin-left: 20px;" /></a>
                 <ul class="sub-nav">
                     <li>@Html.ActionLink("Rank", "Index", "Rank") </li>
                     <li>@Html.ActionLink("Colleges", "Index", "PredictCollege") </li>

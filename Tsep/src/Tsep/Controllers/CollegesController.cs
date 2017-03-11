@@ -22,14 +22,21 @@ namespace Tsep.Controllers
         private CloudTable cutofs;
         private StorageCredentials creds;
         private TableQuery<CutOffEntity> que;
+        private TableQuery<GroupEntity> que2;
+        private CloudTable groupdet;
         private TableOperation operation;
         IEnumerable<SelectListItem> selectlist;
+       ~CollegesController()
+        {
+
+        }
         public CollegesController()
         {
             creds = new StorageCredentials("eamcetts2016", "j76JE1NR/K2BAy57zaR4nN6JLris6eJ2Ourjs8GOKqaTMvHkX6k5SYA2ld1jZ45kcj9nAzgU49fqvv6Wwmi3tg==");
             account = new CloudStorageAccount(creds,false);
             tableclient = account.CreateCloudTableClient();
             table = tableclient.GetTableReference("Colleges");
+            groupdet = tableclient.GetTableReference("GroupDetails");
             cutofs = tableclient.GetTableReference("Cutoffs");
             selectlist = new List<SelectListItem>
             {
@@ -405,9 +412,10 @@ namespace Tsep.Controllers
             var result = table.ExecuteAsync(operation);
             colgdet.college = (CollegeEntity)result.Result.Result;
             colgdet.colgselected = true;
-            que= new TableQuery<CutOffEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, colgdet.college.RowKey));
-            var  results = cutofs.ExecuteQuerySegmentedAsync<CutOffEntity>(que, null);
-           colgdet.Cutoofs = results.Result.ToList<CutOffEntity>();
+            que = new TableQuery<CutOffEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, colgdet.college.RowKey));
+            colgdet.Cutoofs = cutofs.ExecuteQuerySegmentedAsync<CutOffEntity>(que, null).Result.ToList();
+            que2 = new TableQuery<GroupEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, colgdet.college.RowKey));
+            colgdet.GroupDetails = groupdet.ExecuteQuerySegmentedAsync<GroupEntity>(que2, null).Result.ToList();
             return View(colgdet);
         }
     }

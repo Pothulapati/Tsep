@@ -85,8 +85,23 @@
             </tr>
         </table>
         <div class="results">
+            <h1>Intake & Fee:</h1>
+            <table>
+                <tr>
+                  <th>Group</th>
+                    <th>Intake</th>
+                    <th>Fee</th>
+                </tr>
+                @foreach (var item in Model.GroupDetails)
+                {
+                    <tr>
+                        <td>@item.RowKey</td>
+                        <td>@item.Intake</td>
+                        <td>@item.Fee</td>
+                    </tr>
+                }
+            </table>
             <h1>College Cut-Off Ranks:</h1>
-
             <table>
                 <tr>
                     <th>Groups</th>
