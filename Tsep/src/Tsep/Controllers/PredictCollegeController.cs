@@ -20,6 +20,7 @@ namespace Tsep.Controllers
         private CloudTableClient tableclient;
         private CloudTable table;
         private CloudTable cutofs;
+        private CloudTable allotments;
         private StorageCredentials creds;
         private TableQuery<CutOffEntity> que;
         private TableOperation operation;
@@ -29,15 +30,18 @@ namespace Tsep.Controllers
             creds = new StorageCredentials("eamcetts2016", "j76JE1NR/K2BAy57zaR4nN6JLris6eJ2Ourjs8GOKqaTMvHkX6k5SYA2ld1jZ45kcj9nAzgU49fqvv6Wwmi3tg==");
             account = new CloudStorageAccount(creds, false);
             tableclient = account.CreateCloudTableClient();
-            table = tableclient.GetTableReference("Colleges");
+            table = tableclient.GetTableReference("colss");
             cutofs = tableclient.GetTableReference("Cutoffs");
+            allotments = tableclient.GetTableReference("Allotments");
         }
         // GET: /<controller>/
         public IActionResult Index()
         {
+
+
             return View();
         }
-        public IActionResult GetColleges(int rank)
+        public IActionResult GetColleges(string rank,string region,string caste)
         {
 
             return View();
