@@ -5,14 +5,19 @@
 {
     <table>
         <tr>
-            <td>
-                @Html.TextBoxFor(m=>m.GroupTotal, new { @class = "text-feild" })
-            </td>
+	    <td>
+	        @Html.TextBoxFor(m => m.GroupTotal, new { @class = "text-feild" })
+	    </td>
+	    <td>@Html.ValidationMessageFor(m => m.GroupTotal)</td>
+		
+          
         </tr>
         <tr>
             <td>
                 @Html.TextBoxFor(m=>m.EamcetTotal, new { @class = "text-feild" })
+	
             </td>
+	    <td>@Html.ValidationMessageFor(m => m.EamcetTotal)</td>
         </tr>
         <tr>
             <td>

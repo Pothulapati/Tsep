@@ -13,13 +13,8 @@ namespace Tsep
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.Page = "Index";
+            ViewBag.Page = "Home";
             return View();
-        }
-        public IActionResult Blog(string id)
-        {
-
-            return View(id);
         }
        
     }

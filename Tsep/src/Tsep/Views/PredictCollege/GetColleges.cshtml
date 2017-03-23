@@ -1,0 +1,147 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Tsep.Models
+@model  CollegePred
+@using (Html.BeginForm("GetColleges", "PredictCollege"))
+{
+
+    <h1>Enter Your Details:</h1>
+    <table>
+        <tr>
+            <td><h2>Caste: </h2></td>
+            <td>
+	        @Html.DropDownListFor(m => m.Caste, new List<SelectListItem>
+		    {
+		    new SelectListItem() { Text="OC",Value="OC"},
+		    new SelectListItem() { Text="BC_A",Value="BC_A"},
+		    new SelectListItem() { Text="BC_B",Value="BC_B"},
+		    new SelectListItem() { Text="BC_C",Value="BC_C"},
+		    new SelectListItem() { Text="BC_D",Value="BC_D"},
+		    new SelectListItem() { Text="BC_E",Value="BC_E"},
+		    new SelectListItem() { Text="SC",Value="SC"},
+		    new SelectListItem() { Text="ST",Value="ST"},
+		}, new { @class = "select" })
+
+</td>
+        </tr>
+        <tr>
+            <td>
+                <h2>Region:</h2>
+            </td>
+            <td>
+		@Html.DropDownListFor(m => m.Region, new List<SelectListItem>
+	   {
+	       new SelectListItem() {Text = "OU",Value = "OU"}
+
+	   }, new { @class = "select" })
+            </td>
+        </tr>
+        <tr>
+            <td><h2>Sex:</h2></td>
+            <td>
+		@Html.DropDownListFor(m => m.Sex, new List<SelectListItem>
+	   {
+	       new SelectListItem() {Text = "Male" , Value = "GEN"},
+	       new SelectListItem() {Text = "Female",Value = "GIRLS"}
+
+	   }, new { @class = "select" })
+            </td>
+        </tr>
+        <tr>
+            <td><h2>Rank:</h2></td>
+            <td>
+                @Html.TextBoxFor(m => m.Rank, new { @class = "text-feild" })
+            </td>
+        </tr>
+        <tr>
+            <td><h2>Group:</h2></td>
+            <td>
+                @Html.DropDownListFor(m => m.Group, new List<SelectListItem>
+	   {
+	       new SelectListItem(){Text="Show All",Value="all"},
+		new SelectListItem() { Text="COMPUTER SCIENCE  AND  ENGINEERING",Value="CSE"},
+		new SelectListItem() { Text="ELECTRONICS AND COMMUNICATION ENGINEERING",Value="ECE"},
+		new SelectListItem() { Text="ELECTRICAL AND ELECTRONICS ENGINEERING",Value="EEE"},
+		new SelectListItem() { Text="MECHANICAL ENGINEERING",Value="MEC"},
+		new SelectListItem() { Text="CIVIL ENGINEERING",Value="CIV"},
+		new SelectListItem() { Text="B. PHARMACY (M.P.C. STREAM)",Value="PHM"},
+		new SelectListItem() { Text="INFORMATION TECHNOLOGY",Value="INF"},
+		new SelectListItem() { Text="PHARM - D (M.P.C. STREAM)",Value="PHD"},
+		new SelectListItem() { Text="ELECTRONICS AND INSTRUMENTATION ENGINEERING",Value="EIE"},
+		new SelectListItem() { Text="CHEMICAL ENGINEERING",Value="CHE"},
+		new SelectListItem() { Text="AERONAUTICAL ENGINEERING",Value="ANE"},
+		new SelectListItem() { Text="INDUSTRIAL PRODUCTION ENGINEERING",Value="IPE"},
+		new SelectListItem() { Text="FOOD SCIENCE",Value="FDS"},
+		new SelectListItem() { Text="PLANNING",Value="PLG"},
+		new SelectListItem() { Text="AUTOMOBILE ENGINEERING",Value="AUT"},
+		new SelectListItem() { Text="BIO-TECHNOLOGY",Value="BIO"},
+		new SelectListItem() { Text="MINING ENGINEERING",Value="MIN"},
+		new SelectListItem() { Text="BIO-MEDICAL ENGINEERING",Value="BME"},
+		new SelectListItem() { Text="ELECTRONICS AND COMPUTER ENGINEERING",Value="ECM"},
+		new SelectListItem() { Text="TEXTILE TECHNOLOGY",Value="TEX"},
+		new SelectListItem() { Text="MATERIAL SCIENCE AND NANO TECHNOLOGY",Value="MNT"},
+		new SelectListItem() { Text="DIGITAL TECHNIQUES FOR DESIGN AND PLANNING",Value="DTD"},
+		new SelectListItem() { Text="DAIRYING",Value="DRG"},
+		new SelectListItem() { Text="METALLURGICAL ENGINEERING",Value="MET"},
+		new SelectListItem() { Text="FOOD PROCESSING TECHNOLOGY",Value="FPT"},
+		new SelectListItem() { Text="CIVIL ENVIRONMENTAL ENGINEERING",Value="CEE"},
+		new SelectListItem() { Text="METALLURGY AND MATERIAL ENGINEERING",Value="MMT"},
+		new SelectListItem() { Text="FACILITIES AND SERVICES PLANNING",Value="FSP"},
+		new SelectListItem() { Text="MECHANICAL (MECHTRONICS) ENGINEERING",Value="MCT"},
+		new SelectListItem() { Text="AGRICULTURAL ENGINEERING",Value="AGR"},
+		new SelectListItem() { Text="PHARMACEUTICAL ENGINEERING",Value="PHE"},
+	   }
+	 , new { @class = "select" })
+            </td>
+        </tr>
+        <tr>
+            <td><h2>Show:</h2></td>
+            <td>
+                <select name="Count">
+                    <option value="10">Top 10</option>
+                    <option value="25">Top 25</option>
+                    <option value="50">Top 50</option>
+                    <option value="100">Top 100</option>
+                    <option value="0">Show All</option>
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Submit" />
+            </td>
+        </tr>
+    </table>
+}
+<div class="results">
+<table>
+    <tr>
+	<th>S.No</th>
+        <th>College Code</th>
+        <th>College Name</th>
+        <th>Group Code</th>
+        <th>Group Name</th>
+        <th>Rank</th>
+    </tr>
+    @{ 
+	int i = 1;
+    }
+    
+    @foreach (var item in Model.colgs)
+    {
+        <tr>
+	    <td>@i</td>
+            <td>@item.CollegeCode</td>
+            <td>@item.CollegeName</td>
+            <td>@item.GroupCode</td>
+            <td>@item.GroupName</td>
+            <td>@item.Rank</td>
+        </tr>
+	i++;
+    }
+</table>
+</div>

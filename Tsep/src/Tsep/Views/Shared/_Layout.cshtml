@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
-
+@using StackExchange.Profiling
 <html>
 
 <head>
+    <title>@ViewBag.Title</title>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({
@@ -11,7 +12,7 @@
         });
     </script>
     <title>@ViewBag.Page</title>
-    <link rel="stylesheet" type="text/css" href="~/css/style.css?h=assavds">
+    <link rel="stylesheet" type="text/css" href="~/css/style.css?h=assavsdsweswsds">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Oswald|Raleway|Source+Sans+Pro&amp;subset=latin-ext" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +31,7 @@
 </head>
 
 <body>
+   
     <header>
         <ul class="topnav" id="myTopnav">
             @if(ViewBag.Page == "Index")
@@ -43,11 +45,14 @@
             <li class="@(ViewBag.Page == "Index" ? "active" : "")">@Html.ActionLink("Home","Index","Home")</li>
             <li class="@(ViewBag.Page == "Colleges" ? "active" : "")">@Html.ActionLink("Colleges","Index","Colleges")</li>
             <li>
-                <a href="#" class="nav-btn" id="btn">Predictor<img class="img" src="~/images/arrow-down.png" data-swap="~/images/arrow-up.png" width="20" style="position: fixed; margin-left: 20px;" /></a>
-                <ul class="sub-nav">
-                    <li>@Html.ActionLink("Rank", "Index", "Rank") </li>
-                    <li>@Html.ActionLink("Colleges", "Index", "PredictCollege") </li>
-                </ul>
+	        <a href="#" class="nav-btn" id="btn">
+	            Predictor<img class="img" src="~/images/arrow-down.png" data-swap="~/images/arrow-up.png" width="20" style="position: fixed; margin-left: 20px;" />
+	        </a>
+	            <ul class="sub-nav">
+	                <li>@Html.ActionLink("Rank", "Index", "Rank") </li>
+	                <li>@Html.ActionLink("Colleges", "Index", "PredictCollege") </li>
+	            </ul>
+	        
             </li>
             <li class="right @(ViewBag.Page == "About" ? "active" : "")">@Html.ActionLink("About","Index","About")</li>
             <li class="right @(ViewBag.Page == "Contact" ? "active" : "")">@Html.ActionLink("Contact","Index","Contact")</li>
@@ -62,5 +67,6 @@
     <div class="container">
         @RenderBody()
     </div>
+    <mini-profiler position="@RenderPosition.Right" max-traces="5" />
 </body>
 </html>

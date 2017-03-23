@@ -22,7 +22,7 @@ namespace Tsep.Controllers
         private CloudTable cutofs;
         private CloudTable allotments;
         private StorageCredentials creds;
-        private TableQuery<CutOffEntity> que;
+        private TableQuery<CollegeCutoffEntity> que;
         private TableOperation operation;
         IEnumerable<SelectListItem> selectlist;
         public PredictCollegeController()
@@ -30,21 +30,34 @@ namespace Tsep.Controllers
             creds = new StorageCredentials("eamcetts2016", "j76JE1NR/K2BAy57zaR4nN6JLris6eJ2Ourjs8GOKqaTMvHkX6k5SYA2ld1jZ45kcj9nAzgU49fqvv6Wwmi3tg==");
             account = new CloudStorageAccount(creds, false);
             tableclient = account.CreateCloudTableClient();
-            table = tableclient.GetTableReference("colss");
-            cutofs = tableclient.GetTableReference("Cutoffs");
-            allotments = tableclient.GetTableReference("Allotments");
+            table = tableclient.GetTableReference("colaa");
+
         }
         // GET: /<controller>/
         public IActionResult Index()
         {
-
-
-            return View();
+	    ViewBag.Title = "College Predictor";
+	    ViewBag.Page = "College Predcitor";
+	    return View();
         }
-        public IActionResult GetColleges(string rank,string region,string caste)
+        public IActionResult GetColleges(CollegePred pred)
         {
-
-            return View();
+            string reservation = pred.Caste + "_" + pred.Sex + "_" + pred.Region;
+	    if (pred.Group == "all")
+	    {
+		if(pred.Count ==0)
+		que = new TableQuery<CollegeCutoffEntity>().Where(TableQuery.CombineFilters(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, reservation), TableOperators.And, TableQuery.GenerateFilterConditionForInt("Rank", QueryComparisons.GreaterThanOrEqual, Convert.ToInt32(pred.Rank))));
+	    }
+	    else
+	    {
+		que = new TableQuery<CollegeCutoffEntity>().Where(TableQuery.CombineFilters(TableQuery.CombineFilters(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, reservation), TableOperators.And, TableQuery.GenerateFilterConditionForInt("Rank", QueryComparisons.GreaterThanOrEqual, Convert.ToInt32(pred.Rank))), TableOperators.And, TableQuery.GenerateFilterCondition("GroupCode", QueryComparisons.Equal, pred.Group)));
+	    }
+	    IEnumerable<CollegeCutoffEntity> cuts = table.ExecuteQuerySegmentedAsync(que, null).Result.ToList().OrderBy(r=>r.Rank);
+	    pred.colgs = cuts.Take(pred.Count);
+	    ViewBag.Title = "College Predictor";
+	    ViewBag.Page = "College Predcitor";
+            return View(pred);
+            
         }
 
     }

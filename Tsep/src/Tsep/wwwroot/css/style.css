@@ -3,10 +3,18 @@ html,body{
 	padding: 0;
 }
 
+
+::selection {
+    color: #ff8601;
+    background-color: #01245e;
+}
+
 .title{
 	display: none;
 }
-
+select > option {
+color: #01245e;
+}
 /****___HEADER_STARTING___****/
 ul.topnav {
     list-style-type: none;
@@ -14,7 +22,7 @@ ul.topnav {
     padding: 0;
     overflow: hidden;
     background-color: #01245e;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Relay', sans-serif;
 	font-weight: bold;
 	position: fixed;
 	width: 100%;
@@ -141,7 +149,7 @@ li.active a:focus{
 .container{
 	width: 90%;
 	overflow: hidden;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Relay', sans-serif;
 	margin-left: 10%;
 	position: relative;
 	top: 100px;
@@ -151,39 +159,50 @@ form{
 	margin: 0 auto 0;
 }
 
-select{
-	outline: none;
-	max-width: 400px;
-	padding: 16px 0px;
-	border-radius: 0;
+select {
+outline: none;
+width:500px;
+padding: 16px 0px;
+border-radius: 0;
+color: #01245e;
 }
-
-.container>h1{
-	font-size: 50px;
-	letter-spacing: 4px;
-	word-spacing: 5px;
+.content > form > h1 {
+color: black;
 }
-
-.container>h2{
-	font-size: 41px;
-	letter-spacing: 2px;
-	text-align: left;
-	font-weight: bolder; 
+.container > h1 {
+font-size: 50px;
+letter-spacing: 4px;
+word-spacing: 5px;
+color: black;
 }
-
-.container>h4{
-	font-size: 30px;
+.container>select{
+    width:800px;
 }
-.select
+.container>p 
 {
-   width:350px;
-   height:50px;
-    font-size:14px;
+color: #01245e;
+}
+.container > h2 {
+font-size: 45px;
+letter-spacing: 2px;
+text-align: left;
+font-weight: bolder;
+color:black;
+}
 
+.container > h3 {
+font-size: 35px;
+letter-spacing: 0px;
+color: #01245e;
+}
+
+.container > h4 {
+font-size: 30px;
+color: black;
 }
 
 .text-feild{
-	width: 350px;
+	width: 500px;
 	height: 40px;
 	border: 1px solid #01245e;
 	outline: none;
@@ -241,11 +260,8 @@ input[type=submit]:active{
 		height: 400px;
 	}
 	.text-feild{
-		width: 300px;
+		max-width: 300px;
 	}
-    .select {
-        width: 250px;
-    }
 	textarea{
 		width: 300px;
 	}
@@ -256,19 +272,13 @@ input[type=submit]:active{
 		font-size: 13px;
 		padding: 10px 20px;
 	}
-    .select {
-        width: 250px;
-    }
 }
 
 @media screen and (max-width: 350px){
 	.text-feild{
-		width: 250px;
+		width: 300px;
 		padding: 0;
 	}
-    .select{
-        width:250px;
-    }
 
 	textarea{
 		height: 75px;
@@ -306,7 +316,7 @@ input[type=submit]:active{
 /****___PREDICTOR PAGE RESULTS_STARTING___****/
 
 .results table{
-	width: 50%;
+	width: 75%;
 	margin: 30px;
 	color: #fff;
 
@@ -430,7 +440,7 @@ input[type=submit]:active{
 	text-decoration: none;
 	font-size: 25px;
 	font-weight: bold;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Relay', sans-serif;
 }
 
 .subnav>ul>li{
@@ -441,13 +451,23 @@ input[type=submit]:active{
 	cursor: pointer;
 }
 
+.content >.tarun_img>img {
+	float: right;
+}
+
+.content>.tarun_img>.matter{
+    max-width: 200px;
+    float: left;
+    overflow: hidden;
+}
+
 /*.subnav>ul>.avtive_li{
 	font-color: #ff8601;
 }
 */
 .subnav>.content{
 	margin: 0 auto 0;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Relay', sans-serif;
 }
 
 .subnav>.content>p{
@@ -493,14 +513,34 @@ input[type=submit]:active{
 
 /****___BLOG STARTING___****/
 
-.container>a{
-	text-decoration: none;
-	color: #000;
+
+.container{
+    position:relative;
+    top:80px;
+    left: 10px;
+    max-width:800px;
+}
+.content>p{
+    font-size:17px;
+
+}
+.container > p {
+font-size: 20px;
+
+font-family: 'Relay', sans-serif;
 }
 
+.container > a {
+text-decoration: none;
+color: #01245e;
+}
+.container > a>.post > h3 {
+color: black;
+}
 .container>a>.post{
-	max-width: 600px;
+	max-width: 750px;
 	cursor: pointer;
+	font-size:19px;
 	margin-top: 50px;
 }
 
@@ -509,9 +549,10 @@ input[type=submit]:active{
 	margin: 0;
 }
 
-.container>a>.post>p{
-	font-size: 17px;
-	margin: 0;
+.container > a > .post > p {
+font-size: 20px;
+margin: 0;
+color: #01245e;
 }
 
 .container>a>.post>p>span{

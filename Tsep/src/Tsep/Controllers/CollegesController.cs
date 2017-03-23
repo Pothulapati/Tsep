@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Table;
+using StackExchange.Profiling;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -399,6 +400,7 @@ namespace Tsep.Controllers
         public IActionResult Index()
         {
             var Model = new CollegeDetails();
+	    ViewBag.Title = "Colleges";
             ViewBag.Page = "Colleges";
             Model.Colleges = selectlist;
             return View(Model);
@@ -406,17 +408,21 @@ namespace Tsep.Controllers
         [HttpPost]
         public IActionResult College(CollegeDetails colgdet)
         {
-            colgdet.Colleges = selectlist;
-            operation = TableOperation.Retrieve<CollegeEntity>("College", colgdet.college.RowKey);
-            ViewBag.Page = "Colleges";
-            var result = table.ExecuteAsync(operation);
-            colgdet.college = (CollegeEntity)result.Result.Result;
-            colgdet.colgselected = true;
-            que = new TableQuery<CutOffEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, colgdet.college.RowKey));
-            colgdet.Cutoofs = cutofs.ExecuteQuerySegmentedAsync<CutOffEntity>(que, null).Result.ToList();
-            que2 = new TableQuery<GroupEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, colgdet.college.RowKey));
-            colgdet.GroupDetails = groupdet.ExecuteQuerySegmentedAsync<GroupEntity>(que2, null).Result.ToList();
-            return View(colgdet);
+                colgdet.Colleges = selectlist;
+                operation = TableOperation.Retrieve<CollegeEntity>("College", colgdet.college.RowKey);
+                ViewBag.Page = "Colleges";
+                var result = table.ExecuteAsync(operation);
+                colgdet.college = (CollegeEntity)result.Result.Result;
+                colgdet.colgselected = true;
+                    que = new TableQuery<CutOffEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, colgdet.college.RowKey));
+                    colgdet.Cutoofs = cutofs.ExecuteQuerySegmentedAsync<CutOffEntity>(que, null).Result.ToList();
+
+
+                    que2 = new TableQuery<GroupEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, colgdet.college.RowKey));
+                    colgdet.GroupDetails = groupdet.ExecuteQuerySegmentedAsync<GroupEntity>(que2, null).Result.ToList();
+	    ViewBag.Title = colgdet.college.Name;
+                return View(colgdet);
+           
         }
     }
 }

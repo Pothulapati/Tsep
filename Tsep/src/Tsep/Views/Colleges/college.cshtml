@@ -57,11 +57,11 @@
             </tr>
             <tr>
                 <th>Place: </th>
-                <td>@Model.college.Place</td>
+                <td>@(Model.college.Place== ""? "-" : Model.college.Place )</td>
             </tr>
             <tr>
                 <th>Hostel: </th>
-                <td>@Model.college.Hostel</td>
+	        <td>@(Model.college.Hostel == "" ? "-" : Model.college.Hostel )</td>
             </tr>
             <tr>
                 <th>District: </th>
@@ -73,23 +73,24 @@
             </tr>
             <tr>
                 <th>Email: </th>
-                <td>@Model.college.Email</td>
+	        <td>@(Model.college.Email == "" ? "-" : Model.college.Email )</td>
             </tr>
             <tr>
                 <th>Affliation: </th>
-                <td>@Model.college.Affliation</td>
+                <td>@(Model.college.Affliation == ""? "-" : Model.college.Affliation)</td>
             </tr>
             <tr>
                 <th>Website: </th>
-                <td>@Model.college.Website</td>
+	        <td>@(Model.college.Website== "" ? "-" : Model.college.Website )</td>
             </tr>
         </table>
+	</div>
         <div class="results">
             <h1>Intake & Fee:</h1>
             <table>
                 <tr>
                   <th>Group</th>
-                    <th>Intake</th>
+                    <th>Intake(Convenor Quota)</th>
                     <th>Fee</th>
                 </tr>
                 @foreach (var item in Model.GroupDetails)
@@ -101,7 +102,10 @@
                     </tr>
                 }
             </table>
-            <h1>College Cut-Off Ranks:</h1>
+	    </div>
+
+	    <div class="results">
+	    <h1>College Cut-Off Ranks:</h1>
             <table>
                 <tr>
                     <th>Groups</th>
@@ -118,18 +122,83 @@
                 {
                     <tr>
                         <th>@item.RowKey</th>
-                        <td>@item.OC_GEN_OU</td>
-                        <td>@item.BC_A_GEN_OU</td>
-                        <td>@item.BC_B_GEN_OU</td>
-                        <td>@item.BC_C_GEN_OU</td>
-                        <td>@item.BC_D_GEN_OU</td>
-                        <td>@item.BC_E_GEN_OU</td>
-                        <td>@item.SC_GEN_OU</td>
-                        <td>@item.ST_GEN_OU</td>
+			@if (item.OC_GEN_OU == 0)
+			{
+			    <td> - </td>
+			}
+			else
+			{
+			    <td>@item.OC_GEN_OU</td>
 
+			}
+		        @if (item.BC_A_GEN_OU == 0)
+			{
+		            <td> - </td>
+			}
+			else
+			{
+		            <td>@item.BC_A_GEN_OU</td>
+
+			}
+		        @if (item.BC_B_GEN_OU == 0)
+			{
+		            <td> - </td>
+			}
+			else
+			{
+		            <td>@item.BC_B_GEN_OU</td>
+
+			}
+		        @if (item.BC_C_GEN_OU == 0)
+			{
+		            <td> - </td>
+			}
+			else
+			{
+		            <td>@item.BC_C_GEN_OU</td>
+
+			}
+		        @if (item.BC_D_GEN_OU == 0)
+			{
+		            <td> - </td>
+			}
+			else
+			{
+		            <td>@item.BC_D_GEN_OU</td>
+
+			}
+		        @if (item.BC_E_GEN_OU == 0)
+			{
+		            <td> - </td>
+			}
+			else
+			{
+		            <td>@item.BC_E_GEN_OU</td>
+
+			}
+		        @if (item.SC_GEN_OU == 0)
+			{
+		            <td> - </td>
+			}
+			else
+			{
+		            <td>@item.SC_GEN_OU</td>
+
+			}
+		        @if (item.ST_GEN_OU == 0)
+			{
+		            <td> - </td>
+			}
+			else
+			{
+		            <td>@item.ST_GEN_OU</td>
+
+			}
+
+	
+		   
                     </tr>
                 }
             </table>
-        </div>
-    </div>
-
+	    </div>
+        

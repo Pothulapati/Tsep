@@ -13,6 +13,7 @@ namespace Tsep.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+	    ViewBag.Page = "About";
             return View();
         }
     }

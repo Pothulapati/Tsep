@@ -33,23 +33,29 @@ namespace Tsep.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            ViewBag.Page = "Predictor";
             var Model = new Prediction();
-            ViewBag.page = "RankPredictor";
+            ViewBag.page = "Rank Predictor";
+	    ViewBag.Title = "Rank Predictor";
             Model.Done = false;
             return View(Model);
         }
         [HttpPost]
         public async Task<IActionResult> Getdata(Prediction Model)
         {
-            Model.EamcetWeightage = (((float)Model.EamcetTotal / 160) * 75);
-            Model.InterWeightage = ((float)Model.GroupTotal * 25) / 600;
-            Model.CombinedScore = (int)(Model.EamcetWeightage + Model.InterWeightage);
-            Model.Done = true;
-            operation = TableOperation.Retrieve<RankRangeEntity>("Ranks", Model.CombinedScore.ToString());
-            TableResult result = await table.ExecuteAsync(operation);
-            Model.Rankrange = (RankRangeEntity)result.Result;
-            ViewBag.Page = "RankPredictor";
+	    if (Model.EamcetTotal <= 160&&Model.EamcetTotal >0 && Model.GroupTotal <= 600&&Model.GroupTotal>0)
+	    {
+		Model.EamcetWeightage = (((float)Model.EamcetTotal / 160) * 75);
+		Model.InterWeightage = ((float)Model.GroupTotal * 25) / 600;
+		Model.CombinedScore = (int)(Model.EamcetWeightage + Model.InterWeightage);
+		Model.Done = true;
+		operation = TableOperation.Retrieve<RankRangeEntity>("Ranks", Model.CombinedScore.ToString());
+		TableResult result = await table.ExecuteAsync(operation);
+		Model.Rankrange = (RankRangeEntity)result.Result;
+		Model.CombinedScore = Model.EamcetWeightage + Model.InterWeightage;
+		ViewBag.Page = "Rank Predictor";
+		ViewBag.Title = "Rank Predictor";
+		
+	    }
             return View(Model);
         }
     }

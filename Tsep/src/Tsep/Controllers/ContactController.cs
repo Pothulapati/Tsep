@@ -30,6 +30,8 @@ namespace Tsep.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+	    ViewBag.Title = "Contact";
+	    ViewBag.Page = "Contact";
             return View();
         }
         [HttpPost]
@@ -40,6 +42,8 @@ namespace Tsep.Controllers
             op = TableOperation.Insert(Model);
             table.ExecuteAsync(op);
             ViewBag.Name = Model.Name;
+	    ViewBag.Page = "Contact";
+	    ViewBag.Title = "Contact";
             return View("Thanks");
         }
     }
