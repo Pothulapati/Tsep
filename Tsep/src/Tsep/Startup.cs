@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using StackExchange.Profiling.Mvc;
-using StackExchange.Profiling.Storage;
 
 namespace Tsep
 {
@@ -22,7 +20,6 @@ namespace Tsep
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddMiniProfiler();
             services.AddMemoryCache();
            
         }
@@ -37,12 +34,6 @@ namespace Tsep
                 app.UseDeveloperExceptionPage();
             }
             app.UseFileServer();
-            app.UseMiniProfiler(new StackExchange.Profiling.MiniProfilerOptions
-            {
-                RouteBasePath = "~/profiler",
-                SqlFormatter = new StackExchange.Profiling.SqlFormatters.InlineFormatter(),
-                Storage = new MemoryCacheStorage(cache, TimeSpan.FromMinutes(60))
-            });
             app.UseMvcWithDefaultRoute();
         }
     }
